@@ -15,5 +15,10 @@
   <%= @issue.status %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @issue.image.url(:big), :class => "issue_big_image" %>
+</p>
+
 <%= link_to 'Edit', edit_issue_path(@issue) %> |
 <%= link_to 'Back', issues_path %>
