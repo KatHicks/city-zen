@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature "Feature: ISSUE" do
+
   context "there are no issues" do
     scenario 'should display a prompt to add a new issue' do
       visit issues_path
@@ -19,4 +20,5 @@ feature "Feature: ISSUE" do
       expect(page).not_to have_content 'No issues have been reported'
     end
   end
+  
 end

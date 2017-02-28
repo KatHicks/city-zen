@@ -18,22 +18,22 @@ class IssuesController < ApplicationController
   end
 
   # GET /issues/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /issues
   # POST /issues.json
   def create
     @issue = Issue.new(issue_params)
     @issue.status = :open
-    
+
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
-        format.json { render :show, status: :created, location: @issue }
+        format.html { redirect_to issues_path, notice: 'Issue was successfully created.' }
+        # format.json { render :index, status: :created, location: @issue }
       else
         format.html { render :new }
-        format.json { render json: @issue.errors, status: :unprocessable_entity }
+        # format.json { render json: @issue.errors, status: :unprocessable_entity }
       end
     end
   end
