@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Image:</strong>
+  <%= image_tag @issue.image.url(:big), :class => "issue_big_image" %>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @issue.description %>
 </p>
@@ -14,6 +19,7 @@
   <strong>Status:</strong>
   <%= @issue.status %>
 </p>
+
 
 <%= form_for(@issue) do |f| %>
   <% if @issue.errors.any? %>
