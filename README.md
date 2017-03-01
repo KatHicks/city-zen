@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+### Usage
+
+'brew install qt' (if on Sierra - use 'brew install qt@5.5') prior to running bundle to install QT libraries in order to use capybara webkit

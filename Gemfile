@@ -41,6 +41,7 @@ gem 'turbolinks', '~> 5'
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem "capybara-webkit"
 end
 
 group :development, :test do
