@@ -11,4 +11,5 @@ Rails.application.config.assets.version = '1.0'
 
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( maps.js )
+Rails.application.config.assets.precompile += %w( maps_show.js )
 Rails.application.config.assets.precompile += %w( issues.js )

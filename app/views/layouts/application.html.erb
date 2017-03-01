@@ -3,6 +3,8 @@
   <head>
     <title>FixCity</title>
     <%= csrf_meta_tags %>
+    <%= include_gon(:init => true) %>
+     <%= Gon::Base.render_data({}) %>
 
     <style>
        #map {
@@ -14,8 +16,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'maps' %>
+    <%= javascript_include_tag 'maps_show' %>
     <%= javascript_include_tag 'issues.js' %>
-
   </head>
 
   <body>
@@ -26,9 +28,5 @@
       <div class="alert alert alert-danger"><%= alert %></div>
     <% end %>
     <%= yield %>
-
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAPS_API_KEY']%>&callback=initMap">
-    </script>
   </body>
 </html>

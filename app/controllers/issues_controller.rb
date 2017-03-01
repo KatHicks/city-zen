@@ -1,9 +1,17 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:edit, :update, :destroy]
 
   # GET /issues
   def index
     @issues = Issue.all
+  end
+
+  # GET /issues/show
+  def show
+    @issue = Issue.find(params[:id])
+    p "HERE"
+    p @latlng = {lat: @issue.latitude, lng: @issue.longitude}
+    p gon.latlng = @latlng
   end
 
   # GET /issues/new
@@ -15,7 +23,7 @@ class IssuesController < ApplicationController
   def create
     @issue = Issue.new(issue_params)
     @issue.status = :open
-    
+
     respond_to do |format|
       if @issue.save
         format.html { redirect_to issues_path, notice: 'Issue was successfully created.' }
