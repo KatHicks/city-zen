@@ -21,9 +21,17 @@
     <%= f.text_area :description %>
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :status %>
     <%= f.number_field :status %>
+  </div> -->
+
+  <div class="field">
+    <%= f.hidden_field :latitude, :id => "latitude" %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :longitude, :id => "longitude" %>
   </div>
 
   <div class="actions">
