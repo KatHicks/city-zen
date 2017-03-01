@@ -1,5 +1,11 @@
 <h1>New Issue</h1>
-
 <%= render 'form', issue: @issue %>
 
 <%= link_to 'Back', issues_path %>
+
+<div class="container">
+  <div id="map"></div>
+    <% content_for :javascript_includes do %>
+    <%= javascript_include_tag "maps.js" %>
+    <% end %>
+</div>
