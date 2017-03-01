@@ -10,10 +10,72 @@
   <%= @issue.description %>
 </p>
 
-<p>
+<p class="status">
   <strong>Status:</strong>
   <%= @issue.status %>
 </p>
 
+<%= form_for(@issue) do |f| %>
+  <% if @issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+
+      <ul>
+      <% @issue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :status, :value => :pending %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Mark as in progress'%>
+  </div>
+<% end %>
+
+<%= form_for(@issue) do |f| %>
+  <% if @issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+
+      <ul>
+      <% @issue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :status, :value => :resolved %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Mark as resolved' %>
+  </div>
+<% end %>
+
 <%= link_to 'Edit', edit_issue_path(@issue) %> |
 <%= link_to 'Back', issues_path %>
+
+<script>
+
+  var statusChanger = (function(){
+     var statusColor = function() {
+       $(".status:contains('open')").css("color", "red");
+       $(".status:contains('pending')").css("color", "yellow");
+       $(".status:contains('resolved')").css("color", "green");
+   };
+
+   return {
+     color: statusColor
+   };
+  }());
+
+  statusChanger.color();
+
+</script>

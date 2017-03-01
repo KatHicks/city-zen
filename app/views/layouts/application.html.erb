@@ -14,9 +14,17 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'maps' %>
+    <%= javascript_include_tag 'issues.js' %>
+
   </head>
 
   <body>
+    <% if notice %>
+      <div class="notice alert alert-info"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert alert-danger"><%= alert %></div>
+    <% end %>
     <%= yield %>
 
     <script async defer
