@@ -16,10 +16,12 @@ class IssuesController < ApplicationController
     @issue = Issue.new(issue_params)
     @issue.status = :open
 
-    if @issue.save
-      format.html { redirect_to issues_path, notice: 'Issue was successfully created.' }
-    else
-      format.html { render :new }
+    respond_to do |format|
+      if @issue.save
+        format.html { redirect_to issues_path, notice: 'Issue was successfully created.' }
+      else
+        format.html { render :new }
+      end
     end
   end
 
