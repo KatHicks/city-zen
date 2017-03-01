@@ -9,13 +9,16 @@ class IssuesController < ApplicationController
   # GET /issues/new
   def new
     @issue = Issue.new
+    @tags = Tag.all
   end
 
   # POST /issues
   def create
+    @tags = Tag.all
+
     @issue = Issue.new(issue_params)
     @issue.status = :open
-    
+
     respond_to do |format|
       if @issue.save
         format.html { redirect_to issues_path, notice: 'Issue was successfully created.' }
@@ -52,6 +55,6 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image)
+      params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image, :tag_ids => [])
     end
 end
