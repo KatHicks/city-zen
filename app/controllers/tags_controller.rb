@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
 
+
   # GET /tags/new
   def new
     @tag = Tag.new
@@ -16,6 +17,11 @@ class TagsController < ApplicationController
         format.html { render :new }
       end
     end
+  end
+
+  def show
+    @tag = Tag.first(name: params[:name])
+    @issues = @tag ? @tag.issues : []
   end
 
   private
