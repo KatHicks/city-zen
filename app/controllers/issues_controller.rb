@@ -38,7 +38,7 @@ class IssuesController < ApplicationController
   def create
     @tags = Tag.all
 
-    @issue = Issue.new(issue_params)
+    @issue = current_user.issues.new(issue_params)
     @issue.status = :open
 
     respond_to do |format|

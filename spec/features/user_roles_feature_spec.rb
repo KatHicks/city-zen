@@ -4,10 +4,7 @@ require 'rails_helper'
     context 'As a Cityzen' do
       it 'can create an issue' do
         sign_up
-        click_link "Report Issue"
-        fill_in "Title", with: 'title of problem'
-        fill_in "Description", with: "There is a problem with the street"
-        click_button "Create Issue"
+        add_issue
         expect(page).to have_content("Issue was successfully created.")
       end
 

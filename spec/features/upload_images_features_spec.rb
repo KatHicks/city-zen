@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 feature "User can upload a photo" do
+  before do
+    sign_up
+  end
 
   it "will show photos thumbnails in issues list" do
     create_issue_with_image

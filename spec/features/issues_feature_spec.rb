@@ -17,7 +17,10 @@ feature "Feature: ISSUE" do
       @tag2 = Tag.create(name: "Graffiti")
       @litter.tags << @tag1
       @graffiti.tags << @tag2
+      sign_up
+      add_issue
     end
+
     scenario "display issues" do
       visit issues_path
       expect(page).to have_content "Litter"
@@ -48,29 +51,28 @@ feature "Feature: ISSUE" do
 
 
   context "validations" do
+    before do
+      sign_up
+    end
 
-    scenario 'should have to have a title' do
-      visit issues_path
-      add_issue('', 'Very big problem')
+    scenario 'should have a title' do
+      add_issue(title: '')
       expect(page).to have_content "Title can't be blank"
     end
 
     scenario 'should have to have a description' do
-      visit issues_path
-      add_issue('Testing', '')
+      add_issue(description: '')
       expect(page).to have_content "Description can't be blank"
     end
 
 
-    scenario 'title should be no more than 10 characters' do
-      visit issues_path
-      add_issue('123', 'Very big problem')
+    scenario 'title should be at least 4 characters long' do
+      add_issue(title: '123')
       expect(page).to have_content "Title is too short (minimum is 4 characters)"
     end
 
-    scenario 'description should be no more than 500 characters' do
-      visit issues_path
-      add_issue('Problem', 'Testing')
+    scenario 'description should be at least 10 characters long' do
+      add_issue(description: 'Testing')
       expect(page).to have_content "Description is too short (minimum is 10 characters)"
     end
   end
