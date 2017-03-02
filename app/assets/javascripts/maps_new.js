@@ -4,7 +4,7 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
-    center: {lat: 51.5074, lng: 0.1278}
+    center: {lat: 51.508672, lng: -0.127233}
   });
 
   // Try HTML5 geolocation.

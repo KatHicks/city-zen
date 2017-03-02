@@ -1,9 +1,9 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:edit, :update, :destroy]
+  before_action :set_issue, only: [:update, :destroy]
 
   # GET /issues
   def index
-    p @issues = Issue.all
+    @issues = Issue.all
     @latlngs = []
     @issues.each do |issue|
       @latlngs << {lat: issue.latitude, lng: issue.longitude}
@@ -14,8 +14,13 @@ class IssuesController < ApplicationController
   # GET /issues/show
   def show
     @issue = Issue.find(params[:id])
-    @latlng = {lat: @issue.latitude, lng: @issue.longitude}
-    gon.latlng = @latlng
+    single_latlng(@issue)
+  end
+
+  # GET /issues/edit
+  def edit
+    @issue = Issue.find(params[:id])
+    single_latlng(@issue)
   end
 
   # GET /issues/new
@@ -41,7 +46,7 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+        format.html { redirect_to issues_path, notice: 'Issue was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -65,5 +70,10 @@ class IssuesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
       params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image)
+    end
+
+    def single_latlng(issue)
+      @latlng = {lat: issue.latitude, lng: issue.longitude}
+      gon.latlng = @latlng
     end
 end
