@@ -4,10 +4,7 @@ class IssuesController < ApplicationController
   # GET /issues
   def index
     @issues = Issue.all
-    p "PARAMS...", filtering_params(params)
-    filtering_params(params).each do |key, value|
-      @issues = @issues.public_send(key, value) if value.present?
-    end
+    @issues = @issues.status(params[:issue][:status]) if params[:issue].present?
     @tags = Tag.joins(:issues).uniq
   end
 
@@ -67,5 +64,6 @@ class IssuesController < ApplicationController
 
     def filtering_params(params)
       params.require(:issue).slice(:status).permit(:status)
+      p "FILTERING METHOD", params.require(:issue).slice(:status).permit(:status)
     end
 end
