@@ -21,4 +21,11 @@ def create_issue_with_image
   fill_in "Title", with: "This is a title"
   fill_in "Description", with: "Bla blalbla blablablabla blabla blablablablablablablabla"
   click_button "Create Issue"
+
+def sign_up(password: "passedword", password_confirmation: "passedword")
+  visit "/users/sign_up"
+  fill_in "Email", with: "team@email.com"
+  fill_in "Password", with: password
+  fill_in "Password confirmation", with: password_confirmation
+  click_button "Sign up"
 end
