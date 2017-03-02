@@ -3,15 +3,19 @@ class IssuesController < ApplicationController
 
   # GET /issues
   def index
-    @issues = Issue.all
+    p @issues = Issue.all
+    @latlngs = []
+    @issues.each do |issue|
+      @latlngs << {lat: issue.latitude, lng: issue.longitude}
+    end
+    gon.latlngs = @latlngs
   end
 
   # GET /issues/show
   def show
     @issue = Issue.find(params[:id])
-    p "HERE"
-    p @latlng = {lat: @issue.latitude, lng: @issue.longitude}
-    p gon.latlng = @latlng
+    @latlng = {lat: @issue.latitude, lng: @issue.longitude}
+    gon.latlng = @latlng
   end
 
   # GET /issues/new

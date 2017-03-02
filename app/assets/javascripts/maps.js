@@ -14,7 +14,7 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      var currentLocationIcon = 'http://www.robotwoods.com/dev/misc/bluecircle.png'
+      var currentLocationIcon = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
 
       map.setCenter(pos);
       map.setZoom(18);

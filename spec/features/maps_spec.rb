@@ -14,4 +14,13 @@ feature "Feature: MAPS" do
       expect(current_path).to eq issues_path
     end
   end
+
+  context "on the edit issue page" do
+    scenario "users should see a map" do
+      add_issue_with_location
+      save_and_open_page
+      click_link 'Show'
+      expect(page).to have_css('div#map')
+    end
+  end
 end
