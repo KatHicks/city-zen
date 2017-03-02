@@ -21,12 +21,13 @@ def create_issue_with_image
   fill_in "Description", with: "Bla blalbla blablablabla blabla blablablablablablablabla"
   click_button "Create Issue"
 
-def sign_up(password: "passedword", password_confirmation: "passedword")
+def sign_up(email: "team@email.com", password: "passedword", password_confirmation: "passedword", role: "Cityzen")
   visit "/users/sign_up"
-  fill_in "Email", with: "team@email.com"
+  fill_in "Email", with: email
   fill_in "Password", with: password
   fill_in "Password confirmation", with: password_confirmation
   click_button "Sign up"
+  change_user_to_council(email) if role == "Council"
 end
 
 def sign_in(password: "passedword", email: "team@email.com")
@@ -34,4 +35,20 @@ def sign_in(password: "passedword", email: "team@email.com")
   fill_in "Email", with: email
   fill_in "Password", with: password
   click_button "Log in"
+end
+
+def find_link_in_issues(email:, title:, method:)
+  xpath_ref = "//text()[. = '#{email}']/../../td/text()[. = '#{title}']/../../td/a/text()[. = '#{method}']/.."
+  page.all(:xpath, xpath_ref).first
+end
+
+def update_issue(description: "A very basic description")
+  fill_in "Description", with: description
+  click_button 'Update Issue'
+end
+
+### private here, is it possible???
+
+def change_user_to_council(email)
+  User.find_by(email).role = "Council"
 end
