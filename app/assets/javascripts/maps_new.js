@@ -1,10 +1,8 @@
-
-var marker;
-var map;
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
-    center: {lat: 51.508672, lng: -0.127233}
+    center: {lat: 51.508672, lng: -0.127233},
+    styles: styleMaps()
   });
 
   // Try HTML5 geolocation.
@@ -40,7 +38,7 @@ function placeMarkerAndPanTo(latLng, map){
   if (marker != null){
     marker.setMap(null);
   }
-  marker = new google.maps.Marker({
+  var marker = new google.maps.Marker({
     position: latLng,
     map: map,
     draggable: true

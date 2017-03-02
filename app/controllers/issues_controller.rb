@@ -5,22 +5,26 @@ class IssuesController < ApplicationController
   def index
     @issues = Issue.all
     @latlngs = []
+    @status = []
     @issues.each do |issue|
       @latlngs << {lat: issue.latitude, lng: issue.longitude}
+      @status << issue.status
     end
     gon.latlngs = @latlngs
+    gon.status = @status
+
   end
 
   # GET /issues/show
   def show
     @issue = Issue.find(params[:id])
-    single_latlng(@issue)
+    get_status(@issue)
   end
 
   # GET /issues/edit
   def edit
     @issue = Issue.find(params[:id])
-    single_latlng(@issue)
+    get_status(@issue)
   end
 
   # GET /issues/new
@@ -75,5 +79,10 @@ class IssuesController < ApplicationController
     def single_latlng(issue)
       @latlng = {lat: issue.latitude, lng: issue.longitude}
       gon.latlng = @latlng
+    end
+
+    def get_status(issue)
+      single_latlng(issue)
+      gon.status = issue.status
     end
 end
