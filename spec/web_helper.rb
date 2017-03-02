@@ -29,3 +29,10 @@ def sign_up(password: "passedword", password_confirmation: "passedword")
   fill_in "Password confirmation", with: password_confirmation
   click_button "Sign up"
 end
+
+def sign_in(password: "passedword", email: "team@email.com")
+  visit "/users/sign_in"
+  fill_in "Email", with: email
+  fill_in "Password", with: password
+  click_button "Log in"
+end
