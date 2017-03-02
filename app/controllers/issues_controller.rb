@@ -4,6 +4,11 @@ class IssuesController < ApplicationController
   # GET /issues
   def index
     @issues = Issue.all
+    p "PARAMS...", filtering_params(params)
+    filtering_params(params).each do |key, value|
+      @issues = @issues.public_send(key, value) if value.present?
+    end
+    @tags = Tag.joins(:issues).uniq
   end
 
   # GET /issues/new
@@ -47,6 +52,8 @@ class IssuesController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_issue
@@ -56,5 +63,9 @@ class IssuesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
       params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image, :tag_ids => [])
+    end
+
+    def filtering_params(params)
+      params.require(:issue).slice(:status).permit(:status)
     end
 end
