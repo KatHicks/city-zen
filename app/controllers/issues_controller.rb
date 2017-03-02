@@ -4,8 +4,14 @@ class IssuesController < ApplicationController
   # GET /issues
   def index
     @issues = Issue.all
-    @issues = @issues.status(params[:issue][:status]) if params[:issue].present?
-    @issues = 
+    if check_filter(:status)
+      @issues = @issues.status(params[:issue][:status])
+    end
+    if check_filter(:tag)
+      @issues = Issue.all.select do |issue|
+        issue.tags.include?(Tag.find_by_name(params[:issue][:tag]))
+      end
+    end
     @tags = Tag.joins(:issues).uniq
   end
 
@@ -63,8 +69,8 @@ class IssuesController < ApplicationController
       params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image, :tag_ids => [])
     end
 
-    def filtering_params(params)
-      params.require(:issue).slice(:status).permit(:status)
-      p "FILTERING METHOD", params.require(:issue).slice(:status).permit(:status)
+    def check_filter(filter)
+      params[:issue].present? && params[:issue][filter].present?
     end
+
 end
