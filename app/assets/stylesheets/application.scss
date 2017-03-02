@@ -1,0 +1,13 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar-brand {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 50px;
+  padding-top: 22px;
+}
+
+.navbar {
+  min-height: 96px;
+  padding-top: 20px;
+}
