@@ -5,7 +5,7 @@ class IssuesController < ApplicationController
   def index
     @issues = Issue.all
     if check_filter(:status)
-      @issues = @issues.status(params[:issue][:status])
+      @issues = @issues.status(params[:issue][:status].downcase)
     end
     if check_filter(:tag)
       @issues = Issue.all.select do |issue|

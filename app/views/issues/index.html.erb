@@ -2,13 +2,14 @@
 
 <h1>Issues</h1>
   <% if @issues.any? %>
+
     <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
-      <%= f.select :status, ['open', 'pending', 'resolved'] %>
-      <%= f.submit "Filter" %>
+      <%= f.select :status, ['Open', 'Pending', 'Resolved'], :name => "status-filter", :class => 'status-filter' %>
+      <%= f.submit "Filter", :class => "filter-status-button"  %>
     <% end %>
     <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
-      <%= f.select :tag, Tag.all.map { |tag| tag.name } %>
-      <%= f.submit "Filter" %>
+      <%= f.select :tag, Tag.all.map { |tag| tag.name }, :name => "tag-filter", :class => 'tag-filter' %>
+      <%= f.submit "Filter", :class => "filter-tag-button" %>
     <% end %>
 
     <table>
@@ -28,7 +29,7 @@
             <td><%= image_tag issue.image.url(:thumb), :class => "issue_thumb_image" %></td>
             <td><%= issue.title %></td>
             <td><%= issue.description %></td>
-            <td><%= issue.status %></td>
+            <td><%= issue.status.capitalize %></td>
             <td><%= issue.tags.map{|tag| tag.name}.join(', ') %></td>
             <td><%= link_to 'Show', issue %></td>
             <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
@@ -44,3 +45,4 @@
 <br>
 
 <%= link_to 'Report Issue', new_issue_path %>
+<%= link_to 'Add Tag', new_tag_path %>
