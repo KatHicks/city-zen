@@ -5,6 +5,7 @@ class IssuesController < ApplicationController
   def index
     @issues = Issue.all
     @issues = @issues.status(params[:issue][:status]) if params[:issue].present?
+    @issues = 
     @tags = Tag.joins(:issues).uniq
   end
 
