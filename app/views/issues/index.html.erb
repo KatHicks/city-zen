@@ -2,10 +2,12 @@
 
 <h1>Issues</h1>
   <% if @issues.any? %>
-
-    <p>Filter by status</p>
     <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
       <%= f.select :status, ['open', 'pending', 'resolved'] %>
+      <%= f.submit "Filter" %>
+    <% end %>
+    <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
+      <%= f.select :tag, Tag.all.map { |tag| tag.name } %>
       <%= f.submit "Filter" %>
     <% end %>
 
