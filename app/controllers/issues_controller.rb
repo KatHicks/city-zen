@@ -4,6 +4,14 @@ class IssuesController < ApplicationController
   # GET /issues
   def index
     @issues = Issue.all
+    if check_filter(:status)
+      @issues = @issues.status(params[:issue][:status].downcase)
+    end
+    if check_filter(:tag)
+      @issues = Issue.all.select do |issue|
+        issue.tags.include?(Tag.find_by_name(params[:issue][:tag]))
+      end
+    end
     gon.issues = @issues
   end
 
@@ -22,10 +30,13 @@ class IssuesController < ApplicationController
   # GET /issues/new
   def new
     @issue = Issue.new
+    @tags = Tag.all
   end
 
   # POST /issues
   def create
+    @tags = Tag.all
+
     @issue = Issue.new(issue_params)
     @issue.status = :open
 
@@ -65,7 +76,7 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image)
+      params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image, :tag_ids => [])
     end
 
     def single_latlng(issue)
@@ -76,5 +87,9 @@ class IssuesController < ApplicationController
     def get_status(issue)
       single_latlng(issue)
       gon.status = issue.status
+    end
+
+    def check_filter(filter)
+      params[:issue].present? && params[:issue][filter].present?
     end
 end
