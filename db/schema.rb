@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20170303114114) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
     t.integer  "creator_id"
     t.index ["creator_id"], name: "index_issues_on_creator_id", using: :btree
   end
