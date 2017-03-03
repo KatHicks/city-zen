@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 20170301161254) do
     t.integer  "status"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
   end
 
   create_table "issues_tags", id: false, force: :cascade do |t|
