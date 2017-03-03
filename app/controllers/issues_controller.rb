@@ -4,18 +4,29 @@ class IssuesController < ApplicationController
   # GET /issues
   def index
     @issues = Issue.all
+    if check_filter(:status)
+      @issues = @issues.status(params[:issue][:status].downcase)
+    end
+    if check_filter(:tag)
+      @issues = Issue.all.select do |issue|
+        issue.tags.include?(Tag.find_by_name(params[:issue][:tag]))
+      end
+    end
   end
 
   # GET /issues/new
   def new
     @issue = Issue.new
+    @tags = Tag.all
   end
 
   # POST /issues
   def create
+    @tags = Tag.all
+
     @issue = Issue.new(issue_params)
     @issue.status = :open
-    
+
     respond_to do |format|
       if @issue.save
         format.html { redirect_to issues_path, notice: 'Issue was successfully created.' }
@@ -44,6 +55,8 @@ class IssuesController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_issue
@@ -52,6 +65,11 @@ class IssuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def issue_params
-      params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image)
+      params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image, :tag_ids => [])
     end
+
+    def check_filter(filter)
+      params[:issue].present? && params[:issue][filter].present?
+    end
+
 end

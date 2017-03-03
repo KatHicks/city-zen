@@ -11,14 +11,41 @@ feature "Feature: ISSUE" do
 
   context "issue has been created" do
     before do
-      @issue = Issue.create(title: "Testing", description: "A very big problem")
+      @litter = Issue.create(title: "Litter", description: "A very big problem", status: 'pending')
+      @graffiti = Issue.create(title: "Graffiti", description: "A very big problem", status: 'open')
+      @tag1 = Tag.create(name: "Litter")
+      @tag2 = Tag.create(name: "Graffiti")
+      @litter.tags << @tag1
+      @graffiti.tags << @tag2
     end
     scenario "display issues" do
       visit issues_path
-      expect(page).to have_content "Testing"
+      expect(page).to have_content "Litter"
       expect(page).not_to have_content 'No issues have been reported'
     end
+
+    scenario "filter issues by status" do
+      visit issues_path
+      select 'Pending', :from => 'issue_status'
+      page.find('.filter-status-button').click
+      within(:css, 'table') do
+        expect(page).to have_content 'Litter'
+        expect(page).not_to have_content 'Graffiti'
+      end
+    end
+
+    scenario "filter issues by tag" do
+      visit issues_path
+      select 'Litter', :from => 'issue_tag'
+      page.find('.filter-tag-button').click
+      within(:css, 'table') do
+        expect(page).to have_content 'Litter'
+        expect(page).not_to have_content 'Graffiti'
+      end
+    end
   end
+
+
 
   context "validations" do
 

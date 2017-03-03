@@ -22,6 +22,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :tags %>
+    <%= f.collection_check_boxes :tag_ids, @tags, :id, :name %>
+  </div>
+
+  <div class="field">
     <%= f.hidden_field :latitude, :id => "latitude" %>
   </div>
 
