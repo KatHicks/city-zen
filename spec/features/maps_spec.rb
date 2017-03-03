@@ -2,6 +2,10 @@ require 'rails_helper'
 require 'web_helper'
 
 feature "Feature: MAPS" do
+  before do
+    sign_up
+  end
+
   context "on the 'new issue' page" do
     scenario 'users should see a map' do
       visit new_issue_path
@@ -18,7 +22,6 @@ feature "Feature: MAPS" do
   context "on the edit issue page" do
     scenario "users should see a map" do
       add_issue_with_location
-      save_and_open_page
       click_link 'Show'
       expect(page).to have_css('div#map')
     end

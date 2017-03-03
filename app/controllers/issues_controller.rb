@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:update, :destroy]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /issues
   def index
@@ -38,7 +39,7 @@ class IssuesController < ApplicationController
   def create
     @tags = Tag.all
 
-    @issue = Issue.new(issue_params)
+    @issue = current_user.issues.new(issue_params)
     @issue.status = :open
 
     respond_to do |format|
