@@ -22,7 +22,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :tags %>
     <%= f.collection_check_boxes :tag_ids, @tags, :id, :name %>
   </div>
 
@@ -36,10 +35,10 @@
 
   <div class="field">
     <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, :class => 'btn btn-default new-issue' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-default new-issue' %>
   </div>
 <% end %>

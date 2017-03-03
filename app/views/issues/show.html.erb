@@ -1,25 +1,15 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @issue.title %></h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @issue.title %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @issue.image.url(:big), :class => "issue_big_image" %>
-</p>
+<%= image_tag @issue.image.url(:big), :class => "issue_big_image" %>
 
 <p>
   <strong>Description:</strong>
   <%= @issue.description %>
 </p>
 
-<p class="status">
-  <strong>Status:</strong>
-  <%= @issue.status %>
+<p>
+  <p class="btn btn-default status"><strong>Status:</strong> <%= @issue.status %></p>
 </p>
-
 
 <%= form_for(@issue) do |f| %>
   <% if @issue.errors.any? %>
@@ -39,7 +29,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit 'Mark as in progress'%>
+    <%= f.submit 'Mark as in progress', :class => 'btn btn-default status-btn' %>
   </div>
 <% end %>
 
@@ -61,7 +51,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit 'Mark as resolved' %>
+    <%= f.submit 'Mark as resolved', :class => 'btn btn-default status-btn' %>
   </div>
 <% end %>
 
@@ -71,9 +61,9 @@
 <script>
   var statusChanger = (function(){
      var statusColor = function() {
-       $(".status:contains('open')").css("color", "red");
-       $(".status:contains('pending')").css("color", "yellow");
-       $(".status:contains('resolved')").css("color", "green");
+       $(".status:contains('open')").css("background-color", "#aa0b10");
+       $(".status:contains('pending')").css("background-color", "#e47813");
+       $(".status:contains('resolved')").css("background-color", "#286e1a");
    };
 
    return {

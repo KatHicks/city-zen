@@ -60,3 +60,49 @@ body {
   padding: 8px;
   color: #FFFFFF;
 }
+
+.btn-primary {
+  float: right;
+  background-color: #c39471;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.status-key {
+  float: right;
+}
+
+.open-key {
+  background-color: #aa0b10;
+}
+
+.pending-key {
+  background-color: #e47813;
+}
+
+.resolved-key {
+  background-color: #286e1a;
+}
+
+.description {
+  padding-top: 20px;
+}
+
+.status {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.status-btn {
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.new-issue {
+  margin-bottom: 10px;
+}
