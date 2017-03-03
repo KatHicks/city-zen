@@ -7,12 +7,12 @@ function indexMarkers(){
   var images = []
   for (var i=0; i<issues.length; i++){
     issuesId.push(gon.issues[i].id);
-    console.log(issuesId);
     titles.push(gon.issues[i].title);
     status.push(gon.issues[i].status);
     locations.push({lat: gon.issues[i].latitude, lng: gon.issues[i].longitude});
     images.push(gon.issues[i].image_file_name)
   }
+
   var index_map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: {lat: 51.508672, lng: -0.127233},
@@ -32,7 +32,6 @@ function indexMarkers(){
       markerStyle(marker, status[i]);
       bounds.extend(marker.position);
       var infowindow = new google.maps.InfoWindow();
-      var image = images[i]
       google.maps.event.addListener(marker, 'mouseover', (function(marker) {
         return function() {
           infowindow.setContent(
