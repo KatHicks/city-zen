@@ -9,5 +9,6 @@ class Issue < ApplicationRecord
 
   validates :title, presence: true, length: {in: 4..20}
   validates :description, presence: true, length: {in: 10..500}
-
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 end

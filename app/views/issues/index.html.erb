@@ -1,6 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Issues</h1>
+
+<div class="container">
+  <div id="map"></div>
+    <% content_for :javascript_includes do %>
+    <%= javascript_include_tag "maps_index.js" %>
+    <% end %>
+</div>
+
   <% if @issues.any? %>
 
     <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
@@ -42,4 +50,6 @@
     No issues have been reported
   <% end %>
 
-<br>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAPS_API_KEY']%>&callback=indexMarkers">
+</script>

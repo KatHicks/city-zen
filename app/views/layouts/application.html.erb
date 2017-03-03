@@ -3,6 +3,8 @@
   <head>
     <title>FixCity</title>
     <%= csrf_meta_tags %>
+    <%= include_gon(:init => true) %>
+     <%= Gon::Base.render_data({}) %>
 
     <style>
        #map {
@@ -13,12 +15,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'maps' %>
+    <%= javascript_include_tag 'issues.js' %>
+    <%= javascript_include_tag 'maps_new' %>
+    <%= javascript_include_tag 'maps_show' %>
+    <%= javascript_include_tag 'maps_edit' %>
+    <%= javascript_include_tag 'maps_index' %>
     <%= javascript_include_tag 'issues.js' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
-
   </head>
 
   <body>
@@ -53,9 +58,5 @@
       <div class="alert alert alert-danger"><%= alert %></div>
     <% end %>
     <%= yield %>
-
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAPS_API_KEY']%>&callback=initMap">
-    </script>
   </body>
 </html>

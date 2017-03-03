@@ -6,6 +6,10 @@
 <div class="container">
   <div id="map"></div>
     <% content_for :javascript_includes do %>
-    <%= javascript_include_tag "maps.js" %>
+    <%= javascript_include_tag "maps_new.js" %>
     <% end %>
 </div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAPS_API_KEY']%>&callback=initMap">
+</script>

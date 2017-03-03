@@ -4,3 +4,15 @@
 
 <%= link_to 'Show', @issue %> |
 <%= link_to 'Back', issues_path %>
+
+
+<div class="container">
+  <div id="map"></div>
+    <% content_for :javascript_includes do %>
+    <%= javascript_include_tag "maps_edit.js" %>
+    <% end %>
+</div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAPS_API_KEY']%>&callback=editIssueMarker">
+</script>

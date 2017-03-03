@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:update, :destroy]
 
   # GET /issues
   def index
@@ -12,6 +12,19 @@ class IssuesController < ApplicationController
         issue.tags.include?(Tag.find_by_name(params[:issue][:tag]))
       end
     end
+    gon.issues = @issues
+  end
+
+  # GET /issues/show
+  def show
+    @issue = Issue.find(params[:id])
+    get_status(@issue)
+  end
+
+  # GET /issues/edit
+  def edit
+    @issue = Issue.find(params[:id])
+    get_status(@issue)
   end
 
   # GET /issues/new
@@ -40,7 +53,7 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+        format.html { redirect_to issues_path, notice: 'Issue was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -55,8 +68,6 @@ class IssuesController < ApplicationController
     end
   end
 
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_issue
@@ -68,8 +79,17 @@ class IssuesController < ApplicationController
       params.require(:issue).permit(:title, :description, :status, :latitude, :longitude, :image, :tag_ids => [])
     end
 
+    def single_latlng(issue)
+      @latlng = {lat: issue.latitude, lng: issue.longitude}
+      gon.latlng = @latlng
+    end
+
+    def get_status(issue)
+      single_latlng(issue)
+      gon.status = issue.status
+    end
+
     def check_filter(filter)
       params[:issue].present? && params[:issue][filter].present?
     end
-
 end

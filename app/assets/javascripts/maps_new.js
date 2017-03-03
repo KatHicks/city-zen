@@ -1,10 +1,9 @@
-
 var marker;
-var map;
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
-    center: {lat: 51.5074, lng: 0.1278}
+    center: {lat: 51.508672, lng: -0.127233},
+    styles: styleMaps()
   });
 
   // Try HTML5 geolocation.
@@ -14,7 +13,7 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      var currentLocationIcon = 'http://www.robotwoods.com/dev/misc/bluecircle.png'
+      var currentLocationIcon = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
 
       map.setCenter(pos);
       map.setZoom(18);
@@ -45,6 +44,8 @@ function placeMarkerAndPanTo(latLng, map){
     map: map,
     draggable: true
   });
+  var status = "open"
+  markerStyle(marker, status)
   map.panTo(latLng);
   marker.addListener('dragend', handleEvent);
 }
