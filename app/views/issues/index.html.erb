@@ -23,6 +23,12 @@
     <div class="filter-form">
       <%= link_to "Clear All", issues_path %>
     </div>
+    <div class="status-key">
+      <span>Statuses:</span>
+      <p class="btn btn-primary btn-xs resolved-key">Resolved</p>
+      <p class="btn btn-primary btn-xs pending-key">Pending</p>
+      <p class="btn btn-primary btn-xs open-key">Open</p>
+    </div>
   </div>
   <div class="listed-issues">
     <div class="row">
@@ -30,17 +36,20 @@
         <div class="col-sm-12">
           <div class="single-issue">
             <div class="header">
-              <p class="single-header"><%= issue.created_at.strftime("%d %m, %Y") %></p>
+              <p class="single-header"><%= issue.created_at.strftime("%d %m, %Y") %> | <%= issue.creator.email %></p>
               <p><strong><%= issue.title %></strong></p>
             </div>
-            <p class='creator-email'><%= issue.creator.email %></p>
-            <p><%= issue.description %></p>
+            <p class="description"><%= issue.description %></p>
             <p class="status"><%= issue.status.capitalize %></p>
-            <p><%= issue.tags.map{|tag| tag.name}.join(', ') %></p>
+            <% issue.tags.map{|tag| tag.name}.each do |tag| %>
+              <span class="btn btn-primary btn-xs"><%= tag %></span>
+            <% end %>
             <p>
               <%= link_to 'Show', issue %>
-              <%= link_to 'Edit', edit_issue_path(issue) %>
-              <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% if current_user == issue.creator %>
+                <%= link_to 'Edit', edit_issue_path(issue) %>
+                <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
             </p>
           </div>
         </div>
