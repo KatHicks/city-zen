@@ -19,17 +19,17 @@ Citizens are able to report different types of non-emergency problems such as:
 
 Our overarching goal for this project was to design an application which would enable concerned citizens to quickly and efficiently notify their local council of non-emergency problems and issues.  At the outset of the design stage, we first debated the functionality required of a minimum viable product (MVP) and concluded that it should include the abilities to report, view and edit issues.
 
-![Create new](https://github.com/KatHicks/fix-city/tree/master/app/images/IMAG0191.jpg)
+![Create new](app/images/IMAG0191.jpg)
 
 
 We decided at an early stage that the most appropriate technology to use in creating our application would be Ruby on Rails and that we would implement Google Maps functionality using the Google Maps Javascript API.
 
 In order to form a shared vision of the final application we produced a series of mockup images, showing the functionality of each page of the application.
 
-![Create new](https://github.com/KatHicks/fix-city/tree/master/app/images/IMAG0195.jpg)
+![Create new](app/images/IMAG0195.jpg)
 
 
-![Create new](https://github.com/KatHicks/fix-city/tree/master/app/images/IMAG0201.jpg)
+![Create new](app/images/IMAG0201.jpg)
 
 
 #### Development
@@ -39,6 +39,11 @@ We split into three groups of two and assigned each pair an aspect of the projec
 Daily standups were held at which any problems encountered by the pairs were addressed and any instances of particularly unusual or complex code were shared.
 
 #### Using the App
+
+Index view showing all previous issues:
+
+![alt tag](app/images/index.png)
+
 
 #### Outcome
 
