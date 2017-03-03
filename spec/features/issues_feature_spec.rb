@@ -3,6 +3,7 @@ require 'rails_helper'
 feature "Feature: ISSUE" do
   context "there are no issues" do
     scenario 'should display a prompt to add a new issue' do
+      sign_up
       visit issues_path
       expect(page).to have_content "No issues have been reported"
       expect(page).to have_link 'Report Issue'
@@ -10,14 +11,18 @@ feature "Feature: ISSUE" do
   end
 
   context "issue has been created" do
-    before do
-      @litter = Issue.create(title: "Litter", description: "A very big problem", status: 'pending')
-      @graffiti = Issue.create(title: "Graffiti", description: "A very big problem", status: 'open')
+    before do;
+      sign_up
+      user = User.all.first
+      @litter = user.issues.create(title: "Litter", description: "A very big problem", status: 'pending', latitude: 51.509865, longitude: -0.118092)
+      @graffiti = user.issues.create(title: "Graffiti", description: "A very big problem", status: 'open', latitude: 51.709865, longitude: -0.318092)
       @tag1 = Tag.create(name: "Litter")
       @tag2 = Tag.create(name: "Graffiti")
       @litter.tags << @tag1
       @graffiti.tags << @tag2
+      # add_issue
     end
+
     scenario "display issues" do
       visit issues_path
       expect(page).to have_content "Litter"
@@ -28,6 +33,8 @@ feature "Feature: ISSUE" do
       visit issues_path
       select 'Pending', :from => 'issue_status'
       page.find('.filter-status-button').click
+      # save_and_open_page
+      # binding.pry
       within(:css, 'table') do
         expect(page).to have_content 'Litter'
         expect(page).not_to have_content 'Graffiti'
@@ -48,29 +55,28 @@ feature "Feature: ISSUE" do
 
 
   context "validations" do
+    before do
+      sign_up
+    end
 
-    scenario 'should have to have a title' do
-      visit issues_path
-      add_issue('', 'Very big problem')
+    scenario 'should have a title' do
+      add_issue(title: '')
       expect(page).to have_content "Title can't be blank"
     end
 
     scenario 'should have to have a description' do
-      visit issues_path
-      add_issue('Testing', '')
+      add_issue(description: '')
       expect(page).to have_content "Description can't be blank"
     end
 
 
-    scenario 'title should be no more than 10 characters' do
-      visit issues_path
-      add_issue('123', 'Very big problem')
+    scenario 'title should be at least 4 characters long' do
+      add_issue(title: '123')
       expect(page).to have_content "Title is too short (minimum is 4 characters)"
     end
 
-    scenario 'description should be no more than 500 characters' do
-      visit issues_path
-      add_issue('Problem', 'Testing')
+    scenario 'description should be at least 10 characters long' do
+      add_issue(description: 'Testing')
       expect(page).to have_content "Description is too short (minimum is 10 characters)"
     end
   end
