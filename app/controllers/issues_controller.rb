@@ -13,6 +13,7 @@ class IssuesController < ApplicationController
         issue.tags.include?(Tag.find_by_name(params[:issue][:tag]))
       end
     end
+    @issues = @issues.reverse
     gon.issues = @issues
   end
 
@@ -53,6 +54,8 @@ class IssuesController < ApplicationController
 
   # PATCH/PUT /issues/1
   def update
+    @tags = Tag.all
+
     respond_to do |format|
       if @issue.update(issue_params)
         format.html { redirect_to issues_path, notice: 'Issue was successfully updated.' }

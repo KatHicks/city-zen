@@ -1,6 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+}
+
 .navbar-brand {
   font-family: 'Luckiest Guy', cursive;
   font-size: 50px;
@@ -10,4 +15,48 @@
 .navbar {
   min-height: 96px;
   padding-top: 20px;
+}
+
+#map {
+ height: 400px;
+ width: 100%;
+}
+
+.container {
+  padding: 0;
+}
+
+.filters {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-form {
+  display: inline-block;
+}
+
+.listed-issues {
+  height: 550px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: solid 1px #dddddd;
+  padding: 20px;
+}
+
+.single-issue {
+  border: solid 1px #dddddd;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.single-header {
+  float: right;
+}
+
+.header {
+  background-color: #a71e9c;
+  width: 100%;
+  padding: 8px;
+  color: #FFFFFF;
 }

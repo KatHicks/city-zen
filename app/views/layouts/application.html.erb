@@ -6,13 +6,6 @@
     <%= include_gon(:init => true) %>
      <%= Gon::Base.render_data({}) %>
 
-    <style>
-       #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'issues.js' %>
@@ -24,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
   </head>
 
   <body>
@@ -60,12 +54,16 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <% if notice %>
-      <div class="notice alert alert-info"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-      <div class="alert alert alert-danger"><%= alert %></div>
-    <% end %>
-    <%= yield %>
+    <div class="container">
+      <% if notice %>
+        <div class="notice alert alert-info"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert alert-danger"><%= alert %></div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+
   </body>
 </html>
