@@ -4,15 +4,7 @@ class IssuesController < ApplicationController
   # GET /issues
   def index
     @issues = Issue.all
-    @latlngs = []
-    @status = []
-    @issues.each do |issue|
-      @latlngs << {lat: issue.latitude, lng: issue.longitude}
-      @status << issue.status
-    end
-    gon.latlngs = @latlngs
-    gon.status = @status
-
+    gon.issues = @issues
   end
 
   # GET /issues/show
