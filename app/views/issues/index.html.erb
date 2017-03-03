@@ -24,7 +24,6 @@
       <%= link_to "Clear All", issues_path %>
     </div>
   </div>
-
   <div class="listed-issues">
     <div class="row">
       <% @issues.each do |issue| %>
@@ -34,6 +33,7 @@
               <p class="single-header"><%= issue.created_at.strftime("%d %m, %Y") %></p>
               <p><strong><%= issue.title %></strong></p>
             </div>
+            <p class='creator-email'><%= issue.creator.email %></p>
             <p><%= issue.description %></p>
             <p class="status"><%= issue.status.capitalize %></p>
             <p><%= issue.tags.map{|tag| tag.name}.join(', ') %></p>

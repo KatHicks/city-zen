@@ -35,7 +35,7 @@ function indexMarkers(){
       google.maps.event.addListener(marker, 'mouseover', (function(marker) {
         return function() {
           infowindow.setContent(
-                  '<img border="0" align="Left" src="../system/issues/images/000/000/'+("00" + marker.issueid).slice(-3)+'/thumb/'+marker.image+'">' +
+                  '<img border="0" align="Left" src="../system/issues/images/000/000/0'+marker.issueid+'/thumb/'+marker.image+'">' +
                   '<br>' +
                   marker.content
           );
@@ -46,3 +46,4 @@ function indexMarkers(){
     index_map.fitBounds(bounds);
   }
 }
+;

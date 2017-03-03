@@ -11,4 +11,6 @@ class Issue < ApplicationRecord
   validates :description, presence: true, length: {in: 10..500}
   validates :latitude, presence: true
   validates :longitude, presence: true
+
+  belongs_to :creator, class_name: :User, foreign_key: :creator_id
 end
