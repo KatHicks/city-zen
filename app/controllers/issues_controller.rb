@@ -25,6 +25,7 @@ class IssuesController < ApplicationController
   def edit
     @issue = Issue.find(params[:id])
     get_status(@issue)
+    @tags = Tag.all
   end
 
   # GET /issues/new
