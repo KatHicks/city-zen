@@ -1,7 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Issues</h1>
-
 <div class="container">
   <div id="map"></div>
     <% content_for :javascript_includes do %>
@@ -11,44 +7,74 @@
 
   <% if @issues.any? %>
 
-    <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
-      <%= f.select :status, ['Open', 'Pending', 'Resolved'], :name => "status-filter", :class => 'status-filter' %>
-      <%= f.submit "Filter", :class => "filter-status-button"  %>
-    <% end %>
-    <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
-      <%= f.select :tag, Tag.all.map { |tag| tag.name }, :name => "tag-filter", :class => 'tag-filter' %>
-      <%= f.submit "Filter", :class => "filter-tag-button" %>
-    <% end %>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Pic</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Tag</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @issues.each do |issue| %>
-          <tr>
-            <td><%= image_tag issue.image.url(:thumb), :class => "issue_thumb_image" %></td>
-            <td><%= issue.title %></td>
-            <td><%= issue.description %></td>
-            <td><%= issue.status.capitalize %></td>
-            <td><%= issue.tags.map{|tag| tag.name}.join(', ') %></td>
-            <td><%= link_to 'Show', issue %></td>
-            <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
-            <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="filters">
+    <div class="filter-form">
+      <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}) do |f| %>
+        <%= f.select :status, ['Open', 'Pending', 'Resolved'], :name => "status-filter", :class => 'status-filter' %>
+        <%= f.submit "Filter by status", :class => "filter-status-button btn btn-default btn-xs"  %>
+      <% end %>
+    </div>
+    <div class="filter-form">
+      <%= form_for(:issue, :url => { :action => "index"}, :html => {:method => :get}, :class => 'filter-form') do |f| %>
+        <%= f.select :tag, Tag.all.map { |tag| tag.name }, :name => "tag-filter", :class => 'tag-filter' %>
+        <%= f.submit "Filter by tag", :class => "filter-tag-button btn btn-default btn-xs" %>
+      <% end %>
+    </div>
+    <div class="filter-form">
+      <%= link_to "Clear All", issues_path %>
+    </div>
+    <div class="status-key">
+      <span>Statuses:</span>
+      <p class="btn btn-primary btn-xs resolved-key">Resolved</p>
+      <p class="btn btn-primary btn-xs pending-key">Pending</p>
+      <p class="btn btn-primary btn-xs open-key">Open</p>
+    </div>
+  </div>
+  <div class="listed-issues">
+    <div class="row">
+      <% @issues.each do |issue| %>
+        <div class="col-sm-12">
+          <div class="single-issue">
+            <div class="header">
+              <p class="single-header"><%= issue.created_at.strftime("%d %m, %Y") %> | <%= issue.creator.email %></p>
+              <p><strong><%= issue.title %></strong></p>
+            </div>
+            <p class="description"><%= issue.description %></p>
+            <p class="status"><%= issue.status.capitalize %></p>
+            <% issue.tags.map{|tag| tag.name}.each do |tag| %>
+              <span class="btn btn-primary btn-xs"><%= tag %></span>
+            <% end %>
+            <p>
+              <%= link_to 'Show', issue %>
+              <% if current_user == issue.creator %>
+                <%= link_to 'Edit', edit_issue_path(issue) %>
+                <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <% else%>
     No issues have been reported
   <% end %>
+
+<script>
+  var statusChanger = (function(){
+     var statusColor = function() {
+       $(".status:contains('Open')").parent().find(".header").css("background-color", "#aa0b10");
+       $(".status:contains('Pending')").parent().find(".header").css("background-color", "#e47813");
+       $(".status:contains('Resolved')").parent().find(".header").css("background-color", "#286e1a");
+   };
+
+   return {
+     color: statusColor
+   };
+  }());
+
+  statusChanger.color();
+</script>
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['MAPS_API_KEY']%>&callback=indexMarkers">

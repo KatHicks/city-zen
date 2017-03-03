@@ -46,3 +46,4 @@ function indexMarkers(){
     index_map.fitBounds(bounds);
   }
 }
+;

@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:update, :destroy]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /issues
   def index
@@ -12,6 +13,7 @@ class IssuesController < ApplicationController
         issue.tags.include?(Tag.find_by_name(params[:issue][:tag]))
       end
     end
+    @issues = @issues.reverse
     gon.issues = @issues
   end
 
@@ -38,7 +40,7 @@ class IssuesController < ApplicationController
   def create
     @tags = Tag.all
 
-    @issue = Issue.new(issue_params)
+    @issue = current_user.issues.new(issue_params)
     @issue.status = :open
 
     respond_to do |format|
@@ -52,6 +54,8 @@ class IssuesController < ApplicationController
 
   # PATCH/PUT /issues/1
   def update
+    @tags = Tag.all
+
     respond_to do |format|
       if @issue.update(issue_params)
         format.html { redirect_to issues_path, notice: 'Issue was successfully updated.' }

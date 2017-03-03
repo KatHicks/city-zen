@@ -6,13 +6,6 @@
     <%= include_gon(:init => true) %>
      <%= Gon::Base.render_data({}) %>
 
-    <style>
-       #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'issues.js' %>
@@ -20,15 +13,55 @@
     <%= javascript_include_tag 'maps_show' %>
     <%= javascript_include_tag 'maps_edit' %>
     <%= javascript_include_tag 'maps_index' %>
+    <%= javascript_include_tag 'issues.js' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
   </head>
 
   <body>
-    <% if notice %>
-      <div class="notice alert alert-info"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-      <div class="alert alert alert-danger"><%= alert %></div>
-    <% end %>
-    <%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Fix City</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to 'Report Issue', new_issue_path %></li>
+              <% if current_user.role == 'council' %>
+                <li><%= link_to 'Add Tag', new_tag_path %></li>
+              <% end %>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign in", new_user_session_path %></li>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <% end %>
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <% if notice %>
+        <div class="notice alert alert-info"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert alert-danger"><%= alert %></div>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
