@@ -1,3 +1,4 @@
+var marker;
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
@@ -38,11 +39,13 @@ function placeMarkerAndPanTo(latLng, map){
   if (marker != null){
     marker.setMap(null);
   }
-  var marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
     position: latLng,
     map: map,
     draggable: true
   });
+  var status = "open"
+  markerStyle(marker, status)
   map.panTo(latLng);
   marker.addListener('dragend', handleEvent);
 }

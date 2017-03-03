@@ -2,11 +2,11 @@
 
   function markerStyle(marker, status){
     if (status==='pending'){
-      return marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
-    } else if (status==='resolved') {
-      return marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-    } else if (status==='open') {
-      return marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+      return marker.setIcon('../../images/marker_orange.png');
+    } else if (status==='resolved'){
+      return marker.setIcon('../../images/marker_green.png');
+    } else if (status==='open'){
+      return marker.setIcon('../../images/marker_red.png');
     }
   }
   exports.markerStyle = markerStyle;
