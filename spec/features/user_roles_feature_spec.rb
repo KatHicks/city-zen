@@ -7,8 +7,8 @@ Cityzen = Struct.new(:email, :title, :description)  # Is this a good way to decl
         @cityzen1 = Cityzen.new('cityzen1@fixcity.com', 'Left my granny', 'She is in the park and she only has a packet of crisps left')
         sign_up(email: @cityzen1.email)
         add_issue(title: @cityzen1.title, description: @cityzen1.description)
-        click_link "Sign out"
-
+        sign_out
+        
         @cityzen2 = Cityzen.new('cityzen2@fixcity.com', 'Bad Rabbit', "That's a very bad road blocking rabbit")
         sign_up(email: @cityzen2.email)
         add_issue(title: @cityzen2.title, description: @cityzen2.description)

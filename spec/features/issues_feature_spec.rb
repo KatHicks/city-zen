@@ -11,15 +11,16 @@ feature "Feature: ISSUE" do
   end
 
   context "issue has been created" do
-    before do
-      @litter = Issue.create(title: "Litter", description: "A very big problem", status: 'pending')
-      @graffiti = Issue.create(title: "Graffiti", description: "A very big problem", status: 'open')
+    before do;
+      sign_up
+      user = User.all.first
+      @litter = user.issues.create(title: "Litter", description: "A very big problem", status: 'pending', latitude: 51.509865, longitude: -0.118092)
+      @graffiti = user.issues.create(title: "Graffiti", description: "A very big problem", status: 'open', latitude: 51.709865, longitude: -0.318092)
       @tag1 = Tag.create(name: "Litter")
       @tag2 = Tag.create(name: "Graffiti")
       @litter.tags << @tag1
       @graffiti.tags << @tag2
-      sign_up
-      add_issue
+      # add_issue
     end
 
     scenario "display issues" do
@@ -32,6 +33,8 @@ feature "Feature: ISSUE" do
       visit issues_path
       select 'Pending', :from => 'issue_status'
       page.find('.filter-status-button').click
+      # save_and_open_page
+      # binding.pry
       within(:css, 'table') do
         expect(page).to have_content 'Litter'
         expect(page).not_to have_content 'Graffiti'
