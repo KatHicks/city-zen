@@ -12,7 +12,6 @@ class IssuesController < ApplicationController
         issue.tags.include?(Tag.find_by_name(params[:issue][:tag]))
       end
     end
-    @tags = Tag.joins(:issues).uniq
   end
 
   # GET /issues/new
