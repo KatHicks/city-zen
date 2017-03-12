@@ -1,5 +1,7 @@
 # Fix City
 
+[![Build Status](https://travis-ci.org/KatHicks/fix-city.svg?branch=master)](https://travis-ci.org/KatHicks/fix-city)
+
 Fix City is a web application that enables members of the public to report civil issues to their local Council.
 
 Citizens are able to report different types of non-emergency problems such as:
