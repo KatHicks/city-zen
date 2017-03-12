@@ -1,3 +1,0 @@
-test:
-  adapter: postgresql
-  database: fix-city_test
