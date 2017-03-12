@@ -5,5 +5,5 @@ script:
 services:
   - postgresql
 before_script:
-  - cp config/database.yml.travis config/database.yml
+  - cp config/database.yml
   - RAILS_ENV=test bundle exec rake db:create
