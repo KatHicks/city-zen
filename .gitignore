@@ -19,5 +19,6 @@
 
 # Ignore all uploaded files from users
 /public/system/*
+/coverage
 
 .env
