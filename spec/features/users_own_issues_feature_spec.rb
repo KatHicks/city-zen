@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  feature 'user has issues' do
+  feature 'User issues do' do
     context 'when user is logged in' do
       it 'stores an association between issues and user' do
         sign_up

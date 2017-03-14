@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User can upload a photo" do
+feature "Photo upload" do
   before do
     sign_up
   end

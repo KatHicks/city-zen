@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'web_helper'
 
-feature "Feature: MAPS" do
+feature "Maps" do
   before do
     sign_up
   end

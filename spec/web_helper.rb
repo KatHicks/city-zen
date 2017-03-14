@@ -56,8 +56,6 @@ def update_issue(description: "A very basic description")
   click_button 'Update Issue'
 end
 
-### private here, is it possible???
-
 def change_user_to_council(email)
   User.find_by(email).role = "Council"
 end

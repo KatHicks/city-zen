@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Feature: ISSUE" do
+feature "Issues" do
   context "there are no issues" do
     scenario 'should display a prompt to add a new issue' do
       sign_up
