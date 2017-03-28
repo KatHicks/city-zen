@@ -1,5 +1,7 @@
 # Fix City
 
+[![Build Status](https://travis-ci.org/KatHicks/fix-city.svg?branch=master)](https://travis-ci.org/KatHicks/fix-city) [![Coverage Status](https://coveralls.io/repos/github/KatHicks/fix-city/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/fix-city?branch=master) [![Code Climate](https://codeclimate.com/github/KatHicks/fix-city/badges/gpa.svg)](https://codeclimate.com/github/KatHicks/fix-city)
+
 Fix City is a web application that enables members of the public to report civil issues to their local Council.
 
 Citizens are able to report different types of non-emergency problems such as:

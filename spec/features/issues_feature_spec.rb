@@ -20,7 +20,6 @@ feature "Feature: ISSUE" do
       @tag2 = Tag.create(name: "Graffiti")
       @litter.tags << @tag1
       @graffiti.tags << @tag2
-      # add_issue
     end
 
     scenario "display issues" do
@@ -33,8 +32,6 @@ feature "Feature: ISSUE" do
       visit issues_path
       select 'Pending', :from => 'issue_status'
       page.find('.filter-status-button').click
-      # save_and_open_page
-      # binding.pry
       within('.listed-issues', visible: false) do
         expect(page).to have_content 'Litter'
         expect(page).not_to have_content 'Graffiti'
