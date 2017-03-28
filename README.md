@@ -1,8 +1,93 @@
 # Fix City
+### A web application enabling members of the public to report civil issues to their local council
 
 [![Build Status](https://travis-ci.org/KatHicks/fix-city.svg?branch=master)](https://travis-ci.org/KatHicks/fix-city) [![Coverage Status](https://coveralls.io/repos/github/KatHicks/fix-city/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/fix-city?branch=master) [![Code Climate](https://codeclimate.com/github/KatHicks/fix-city/badges/gpa.svg)](https://codeclimate.com/github/KatHicks/fix-city)
 
-Fix City is a web application that enables members of the public to report civil issues to their local Council.
+Built by [Kat Hicks](https://github.com/KatHicks), [Pedro Castanheira](https://github.com/pedrocastanheira77), [Enrico Graziani](https://github.com/mrenrich84), [Barbara Shinkarenk](https://github.com/varvarra), [Samir Gossain](https://github.com/sim-ware) and [Ben Kielty](https://github.com/bwk103) in 5 days as a practice project at Makers Academy
+
+### Instructions
+
+> You'll spend this week working in teams on a project. You'll generate some project ideas (eg "Build a scheme compiler", or "Make a game".) You'll each choose which projects you'd prefer to work on. Your coach will try to assign you to a team that will work on one of your preferred projects.
+>
+> It will be a one week version of the final projects.
+
+### User stories
+
+As a group, we developed the following user stories that defined our goals for the project as well as what we considered to be the minimum viable product (MVP)
+
+**MVP**
+
+```
+As a user,
+so that it can dealt with by the council,
+I want to be able to create an issue.
+
+As a user,
+so that I can manage my issues,
+I want to see a list of all of my reported issues.
+
+As a user,
+so that I can see what needs to be done,
+I want to see all the details of an issue.
+
+As a user,
+so that citizens get feedback on the result,
+I want to be able to manage the status of an issue.
+
+As a user,
+so that I can correct myself,
+I can update an issue that I've raised.
+```
+
+**Version 1**
+
+```
+As a user,
+so that I can differentiate myself and my issues,
+I can sign up.
+
+As a user,
+so that I can rectify a mistake,
+I can delete issues.
+
+As a user,
+so that I can use the app,
+I can sign in.
+
+As a user,
+so that my use of the app is appropriate,
+I can access certain parts of the web app based on my credentials.
+
+As a user,
+so that I can provide the information to the appropriate Council worker,
+I can add tags when reporting or editing my issue.
+
+As a user,
+so that I can see only the issues relevant to me,
+I can filter the issues by tag.
+
+As a council staff member,
+so that citizens get feedback on the result,
+I want to be able to manage the status of an issue.
+
+As a citizen,
+so that it's clear what the problem is,
+I want to be able to upload a photo with my issue.
+
+As a citizen,
+so that it is easier to report an issue,
+I want the app to know my current location.
+```
+
+### Objectives
+
+* Are you having fun?
+* Are you a better developer than you were yesterday?
+* **Can you use high-quality processes to build a project in a team?**
+
+### Using our app
+
+## Approach
 
 Citizens are able to report different types of non-emergency problems such as:
 
@@ -14,8 +99,6 @@ Citizens are able to report different types of non-emergency problems such as:
   * Overgrown trees and vegetation
   * Blocked drains
   * Flooding
-
-## Approach
 
 #### Planning & Design
 
@@ -50,73 +133,6 @@ Index view showing all previous issues:
 #### Outcome
 
 At the conclusion of the project, we have produced an application which meets its overriding specification (that of reporting issues), includes a number of additional features and possesses an attractive user-interface.
-
-## User Stories
-
-```
-
-Minimum Viable Product(MVP):
-
-As a user
-I want to be able to create an issue
-so that it can dealt with by the council
-
-As a user
-I want to see a list of all of my reported issues
-so that I can manage my issues
-
-As a user
-I want to see all the details of an issue
-so that I can see what needs to be done
-
-As a user
-I want to be able to manage the status of an issue
-so that citizens get feedback on the result
-
-As a user
-I can update an issue that I've raised
-so that I can correct myself
-```
-
-```
-Additional Features:
-
-As a user
-I can sign up
-so that I can differentiate myself and my issues
-
-As a user
-I can delete issues
-if I make a mistake.
-
-As a user
-I can sign in
-so that I can use the app
-
-As a user
-I can access certain parts of the web app based on my credentials
-so that my use of the app is appropriate
-
-As a user
-I can add tags when reporting or editing my issue
-so that I can provide the information to the appropriate Council worker.
-
-As a user
-I can filter the issues by tag
-so that I can see only the issues relevant to me
-
-As a council staff member
-I want to be able to manage the status of an issue
-so that citizens get feedback on the result
-
-As a citizen
-I want to be able to upload a photo with my issue
-so that it's clear what the problem is
-
-As a citizen
-I want the app to know my current location
-so that it is easier to report an issue
-```
 
 
 ### Installation
@@ -177,14 +193,3 @@ As a Council staff member
 I want to add council boundaries as a layer to the maps
 so that any reported issues can be automatically forwarded to the appropriate Council.
 ```
-
-
-
-### Collaborators
-
-  * Kat Hicks
-  * Pedro Castanheira
-  * Enrico Graziani
-  * Barbara Shinkarenko
-  * Samir Gossain
-  * Ben Kielty
