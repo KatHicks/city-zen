@@ -35,7 +35,7 @@ feature "Feature: ISSUE" do
       page.find('.filter-status-button').click
       # save_and_open_page
       # binding.pry
-      within(:css, 'table') do
+      within('.listed-issues', visible: false) do
         expect(page).to have_content 'Litter'
         expect(page).not_to have_content 'Graffiti'
       end
@@ -45,7 +45,7 @@ feature "Feature: ISSUE" do
       visit issues_path
       select 'Litter', :from => 'issue_tag'
       page.find('.filter-tag-button').click
-      within(:css, 'table') do
+      within('.listed-issues', visible: false) do
         expect(page).to have_content 'Litter'
         expect(page).not_to have_content 'Graffiti'
       end
