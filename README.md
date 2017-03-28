@@ -7,7 +7,7 @@ Built by [Kat Hicks](https://github.com/KatHicks), [Pedro Castanheira](https://g
 
 ### Instructions
 
-> You'll spend this week working in teams on a project. You'll generate some project ideas (eg "Build a scheme compiler", or "Make a game".) You'll each choose which projects you'd prefer to work on. Your coach will try to assign you to a team that will work on one of your preferred projects.
+> You'll spend this week working in teams on a project. You'll generate some project ideas (e.g. "build a scheme compiler" or "make a game"). You'll each choose which projects you'd prefer to work on. Your coach will try to assign you to a team that will work on one of your preferred projects.
 >
 > It will be a one week version of the final projects.
 
@@ -19,63 +19,63 @@ As a group, we developed the following user stories that defined our goals for t
 
 ```
 As a user,
-so that it can dealt with by the council,
-I want to be able to create an issue.
+So that an issue can be dealt with by the council,
+I want to be able to create an issue on the app.
 
 As a user,
-so that I can manage my issues,
+So that I can manage my issues,
 I want to see a list of all of my reported issues.
 
 As a user,
-so that I can see what needs to be done,
+So that I can see what is needed to resolve an issue,
 I want to see all the details of an issue.
 
 As a user,
-so that citizens get feedback on the result,
+So that citizens can get feedback on the resolution,
 I want to be able to manage the status of an issue.
 
 As a user,
-so that I can correct myself,
-I can update an issue that I've raised.
+So that I can correct myself if there is a mistake in my issue,
+I want to be able to update an issue that I've created.
 ```
 
 **Version 1**
 
 ```
 As a user,
-so that I can differentiate myself and my issues,
-I can sign up.
+So that I can differentiate myself and my issues,
+I want to be able to sign up to the app.
 
 As a user,
-so that I can rectify a mistake,
-I can delete issues.
+So that I can change my mind about an issue,
+I want to be able to delete my issues.
 
 As a user,
-so that I can use the app,
-I can sign in.
+So that I can use all the features of the app,
+I want to be able to sign in.
 
 As a user,
-so that my use of the app is appropriate,
-I can access certain parts of the web app based on my credentials.
+So that my use of the app is appropriate,
+I want to be able to access certain parts of the app based on my credentials.
 
 As a user,
-so that I can provide the information to the appropriate Council worker,
-I can add tags when reporting or editing my issue.
+So that I can provide the information to the appropriate council staff member,
+I want to be able to add tags when reporting or editing an issue.
 
 As a user,
-so that I can see only the issues relevant to me,
-I can filter the issues by tag.
+So that I can see only the issues relevant to me,
+I want to be able to filter the issues by tag.
 
 As a council staff member,
-so that citizens get feedback on the result,
+So that citizens can get feedback on the result,
 I want to be able to manage the status of an issue.
 
 As a citizen,
-so that it's clear what the problem is,
+So that it's clear what the problem is,
 I want to be able to upload a photo with my issue.
 
 As a citizen,
-so that it is easier to report an issue,
+So that it is easier to report an issue,
 I want the app to know my current location.
 ```
 
@@ -88,122 +88,45 @@ I want the app to know my current location.
 ### Using our app
 
 * You can view our app at [fix-city.herokuapp.com](https://fix-city.herokuapp.com/)
+* You will have to sign up to experience the full functionality of the app
 
 ### Running the tests
 
 * If you do not have PostgreSQL installed, you will need to install it using the command `$ brew install postgresql`
-* You will also need to install Rails, Bundler and Imagemagick using the following commands:
-  * `$ gem install rails`
-  * `$ gem install bundler`
-  * `$ brew install imagemagick`
+* You will also need to install Imagemagick using the command `$ brew install imagemagick`
 * Next, download the source code by cloning this repo with `$ git clone`
 * Navigate into the root of the directory using `$ cd fix-city`
-* Run `$ bundle install`, then `$ bin/rake db:create` and `$ bin/rake db:migrate` in the command line
-* Now that everything is set up, run `$ rspec` in the command line to run the tests
+* If you do not have Bundler installed, you will then need to install it using `$ gem install bundler`
+* Then, install all of the project dependencies listed in the Gemfile by running `$ bundle install`
+* Then, run `$ bin/rake db:create` and `$ bin/rake db:migrate` in the command line to get the database configured
+* **Now that everything is set up, run `$ rspec` in the command line to run the tests**
 
-## Approach
+### Technologies
 
-Citizens are able to report different types of non-emergency problems such as:
+* Built using **Ruby 2.3.3** and **Rails 5.0.1**
+* Runs off a **PostgreSQL** database
+* Tested using **RSpec** and **Capybara**
+* Uses **[Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/)** to access and present geolocation information
+* Styled maps with the **['Pale Dawn' theme by Adam Krogh](https://snazzymaps.com/style/1/pale-dawn)** and the 'Map Marker 2' icon set from 'iconsdb.com'
+* Used **SASS** and **Bootstrap** for the front-end styling
+* Various gems were also used for different parts of the app, such as **Paperclip** for image upload and **Cancancan** for user differentiation
 
-  * Potholes
-  * Broken street or sign lighting
-  * Worn or cracked road surfaces
-  * Traffic signal faults
-  * Unstable pavements
-  * Overgrown trees and vegetation
-  * Blocked drains
-  * Flooding
+### Approach
 
-#### Planning & Design
+* **Pairing**
+  * We split into three groups of two and assigned each pair an aspect of the project to research and develop
+  * One group was assigned to the underlying scaffold and structure of the application, another to the different user accounts and image upload, and the final pair to the addition of Google Maps
+* **Standups**
+  * Daily stand up meetings were held where any problems encountered by the pairs were addressed and any instances of particularly unusual or complex code were reviewed
 
-Our overarching goal for this project was to design an application which would enable concerned citizens to quickly and efficiently notify their local council of non-emergency problems and issues.  At the outset of the design stage, we first debated the functionality required of a minimum viable product (MVP) and concluded that it should include the abilities to report, view and edit issues.
+### Ideas for extension
 
-![Create new](app/images/IMAG0191.jpg)
+There are lots of features that we would have liked to include but didn't have time to implement. Below is just a small selection:
 
-
-We decided at an early stage that the most appropriate technology to use in creating our application would be Ruby on Rails and that we would implement Google Maps functionality using the Google Maps Javascript API.
-
-In order to form a shared vision of the final application we produced a series of mockup images, showing the functionality of each page of the application.
-
-![Create new](app/images/IMAG0195.jpg)
-
-
-![Create new](app/images/IMAG0201.jpg)
-
-
-#### Development
-
-We split into three groups of two and assigned each pair an aspect of the project to research and develop.  One group was assigned to the underlying scaffold, structure and views of the rails environment, another to a feature permitting the uploading of user photos, and the final pair to the addition of Google Maps across the application.
-
-Daily standups were held at which any problems encountered by the pairs were addressed and any instances of particularly unusual or complex code were shared.
-
-#### Using the App
-
-Index view showing all previous issues:
-
-![alt tag](app/images/index.png)
-
-
-#### Outcome
-
-At the conclusion of the project, we have produced an application which meets its overriding specification (that of reporting issues), includes a number of additional features and possesses an attractive user-interface.
-
-
-### Installation
-
-This project uses Ruby on Rails version 5.0.1 (http://rubyonrails.org) and Ruby version 2.3.3.
-
-  * git clone/fork this repository
-
-  * $ gem install rails
-
-  * $ gem install bundler
-
-  * $ brew install imagemagick
-
-  * $ bundle install
-
-  * $ bin/rake db:create
-
-  * $ bin/rake db:migrate
-
-  * $ bin/rails s
-
-  * Open http://localhost:3000/ in your browser in order to access the app
-
-
-### Testing framework
-
-This project was tested using Rspec and Capybara.  In order to run and view the tests, run '$ rspec' from the command line.
-
-### Services
-
-The application uses Google Maps Javascript API (https://developers.google.com/maps/documentation/javascript/) in order to access and present map, marker and geolocation information.
-
-To style the maps we used the 'Pale Dawn' theme by Adam Krogh (https://snazzymaps.com/style/1/pale-dawn) and the 'Map Marker 2' iconset from 'iconsdb.com'.
-
-### Future Updates
-
-Going forward, we would like to add functionality to address the following user stories:
-
-```
-As a citizen
-I want to receive notifications when the status of my issue is changed
-so that I know as soon as the Council has resolved the issue.
-
-As a user
-I want to have a profile page
-so that I can see my user information and reported issue history
-
-As a user
-I want to receive 'badges'
-so that I can demonstrate the number of times I've reported issues
-
-As a user
-I want to use a 'live chat' feature
-so that I can discuss an issue with a Council staff member in real time
-
-As a Council staff member
-I want to add council boundaries as a layer to the maps
-so that any reported issues can be automatically forwarded to the appropriate Council.
-```
+* **Council boundaries on map**
+  * Our intention for the app is that it would serve the whole of London. London is made up of 32 boroughs which are each responsible for dealing with most of the civic issues within their boundaries.
+  * As such, we had wanted to display the borough boundaries on the map and set up the app so that reported issues are automatically forwarded to the appropriate council member
+* **Notifications**
+  * We also wanted to add on a notification feature so that a user is notified, for example, when the status of an issue that they submitted is changed
+* **Profile page**
+  * It would have been nice to add a profile page so that users can quickly see all the issues that they themselves have submitted
