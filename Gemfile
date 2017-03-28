@@ -27,18 +27,16 @@ gem 'paperclip'
 gem 'byebug', platform: :mri
 gem 'pry-byebug'
 gem 'dotenv-rails'
+gem 'rspec'
+gem 'rspec-rails'
+gem 'capybara'
+gem 'shoulda'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :test do
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'shoulda'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
