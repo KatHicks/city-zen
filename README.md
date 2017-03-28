@@ -1,5 +1,5 @@
 # Fix City
-### A web application enabling members of the public to report civil issues to their local council
+### A web application enabling members of the public to report civic issues to their local council
 
 [![Build Status](https://travis-ci.org/KatHicks/fix-city.svg?branch=master)](https://travis-ci.org/KatHicks/fix-city) [![Coverage Status](https://coveralls.io/repos/github/KatHicks/fix-city/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/fix-city?branch=master) [![Code Climate](https://codeclimate.com/github/KatHicks/fix-city/badges/gpa.svg)](https://codeclimate.com/github/KatHicks/fix-city)
 
@@ -26,7 +26,7 @@ I want to be able to create an issue on the app.
 
 As a user,
 So that I can manage my issues,
-I want to see a list of all of my reported issues.
+I want to see a list of all my reported issues.
 
 As a user,
 So that I can see what is needed to resolve an issue,
