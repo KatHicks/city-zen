@@ -32,7 +32,7 @@ feature "Issues" do
       visit issues_path
       select 'Pending', :from => 'issue_status'
       page.find('.filter-status-button').click
-      within(:css, '.listed-issues') do
+      within('.listed-issues', visible: false) do
         expect(page).to have_content 'Litter'
         expect(page).not_to have_content 'Graffiti'
       end
@@ -42,7 +42,7 @@ feature "Issues" do
       visit issues_path
       select 'Litter', :from => 'issue_tag'
       page.find('.filter-tag-button').click
-      within(:css, '.listed-issues') do
+      within('.listed-issues', visible: false) do
         expect(page).to have_content 'Litter'
         expect(page).not_to have_content 'Graffiti'
       end
