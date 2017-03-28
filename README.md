@@ -87,6 +87,20 @@ I want the app to know my current location.
 
 ### Using our app
 
+* You can view our app at [fix-city.herokuapp.com](https://fix-city.herokuapp.com/)
+
+### Running the tests
+
+* If you do not have PostgreSQL installed, you will need to install it using the command `$ brew install postgresql`
+* You will also need to install Rails, Bundler and Imagemagick using the following commands:
+  * `$ gem install rails`
+  * `$ gem install bundler`
+  * `$ brew install imagemagick`
+* Next, download the source code by cloning this repo with `$ git clone`
+* Navigate into the root of the directory using `$ cd fix-city`
+* Run `$ bundle install`, then `$ bin/rake db:create` and `$ bin/rake db:migrate` in the command line
+* Now that everything is set up, run `$ rspec` in the command line to run the tests
+
 ## Approach
 
 Citizens are able to report different types of non-emergency problems such as:
