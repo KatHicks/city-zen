@@ -26,13 +26,21 @@ def create_issue_with_image
   click_button "Create Issue"
 end
 
-def sign_up(email: "team@email.com", password: "passedword", password_confirmation: "passedword", role: "Cityzen")
+def sign_up(email: "team@email.com", password: "passedword", password_confirmation: "passedword")
   visit "/users/sign_up"
   fill_in "user_email", with: email
   fill_in "Password", with: password
   fill_in "Password confirmation", with: password_confirmation
   click_button "Sign up"
-  change_user_to_council(email) if role == "Council"
+end
+
+def sign_up_council(email: "council@email.com", password: "passedword", password_confirmation: "passedword", role: "Cityzen")
+  visit "/users/sign_up"
+  fill_in "user_email", with: email
+  fill_in "Password", with: password
+  fill_in "Password confirmation", with: password_confirmation
+  click_button "Sign up"
+  change_user_to_council(email)
 end
 
 def sign_in(password: "passedword", email: "team@email.com")
@@ -56,8 +64,7 @@ def update_issue(description: "A very basic description")
   click_button 'Update Issue'
 end
 
-### private here, is it possible???
-
 def change_user_to_council(email)
-  User.find_by(email).role = "Council"
+  user = User.find_by(email: "council@email.com")
+  user.role = "council"
 end
