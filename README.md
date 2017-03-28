@@ -5,6 +5,8 @@
 
 Built by [Kat Hicks](https://github.com/KatHicks), [Pedro Castanheira](https://github.com/pedrocastanheira77), [Enrico Graziani](https://github.com/mrenrich84), [Barbara Shinkarenk](https://github.com/varvarra), [Samir Gossain](https://github.com/sim-ware) and [Ben Kielty](https://github.com/bwk103) in 5 days as a practice project at Makers Academy
 
+![Screenshot of landing page](/screenshot.png?raw=true "Screenshot of landing page")
+
 ### Instructions
 
 > You'll spend this week working in teams on a project. You'll generate some project ideas (e.g. "build a scheme compiler" or "make a game"). You'll each choose which projects you'd prefer to work on. Your coach will try to assign you to a team that will work on one of your preferred projects.
