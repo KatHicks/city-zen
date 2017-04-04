@@ -14,8 +14,8 @@ feature "Issues" do
     before do;
       sign_up
       user = User.all.first
-      @litter = user.issues.create(title: "Litter", description: "A very big problem", status: 'pending', latitude: 51.509865, longitude: -0.118092)
-      @graffiti = user.issues.create(title: "Graffiti", description: "A very big problem", status: 'open', latitude: 51.709865, longitude: -0.318092)
+      @litter = user.issues.create(title: "Litter on the street", description: "A very big problem", status: 'pending', latitude: 51.509865, longitude: -0.118092)
+      @graffiti = user.issues.create(title: "Graffiti on the wall", description: "A very big problem", status: 'open', latitude: 51.709865, longitude: -0.318092)
       @tag1 = Tag.create(name: "Litter")
       @tag2 = Tag.create(name: "Graffiti")
       @litter.tags << @tag1
@@ -24,7 +24,7 @@ feature "Issues" do
 
     scenario "display issues" do
       visit issues_path
-      expect(page).to have_content "Litter"
+      expect(page).to have_content "Litter on the street"
       expect(page).not_to have_content 'No issues have been reported'
     end
 
@@ -33,8 +33,8 @@ feature "Issues" do
       select 'Pending', :from => 'issue_status'
       page.find('.filter-status-button').click
       within('.listed-issues', visible: false) do
-        expect(page).to have_content 'Litter'
-        expect(page).not_to have_content 'Graffiti'
+        expect(page).to have_content 'Litter on the street'
+        expect(page).not_to have_content 'Graffiti on the wall'
       end
     end
 
@@ -43,8 +43,8 @@ feature "Issues" do
       select 'Litter', :from => 'issue_tag'
       page.find('.filter-tag-button').click
       within('.listed-issues', visible: false) do
-        expect(page).to have_content 'Litter'
-        expect(page).not_to have_content 'Graffiti'
+        expect(page).to have_content 'Litter on the street'
+        expect(page).not_to have_content 'Graffiti on the wall'
       end
     end
 
@@ -54,6 +54,13 @@ feature "Issues" do
       fill_in "Description", with: "A very nice one"
       click_button 'Update Issue'
       expect(page).to have_content("Issue was successfully updated.")
+    end
+
+    scenario "issue can be destroyed by its creator" do
+      visit issues_path
+      click_link("Destroy", :match => :first)
+      expect(page).to have_content("Issue was successfully destroyed.")
+      expect(page).not_to have_content("Graffiti on the wall")
     end
   end
 
