@@ -47,6 +47,14 @@ feature "Issues" do
         expect(page).not_to have_content 'Graffiti'
       end
     end
+
+    scenario "issue can be updated" do
+      visit issues_path
+      click_link("Edit", :match => :first)
+      fill_in "Description", with: "A very nice one"
+      click_button 'Update Issue'
+      expect(page).to have_content("Issue was successfully updated.")
+    end
   end
 
 
